@@ -8,8 +8,8 @@ public class PosMachine {
     public String printReceipt(List<String> barcodes) {
 
         List<ItemInfo> itemsInCart = createItemByBarcodes(barcodes);
-        Map<String, Integer> itemQuantities = getSubTotalNumOfItem(itemsInCart);
-        String itemReceipt = getEachItemReceipt(itemQuantities);
+        Map<String, Integer> itemSubToltalNum = getSubTotalNumOfItem(itemsInCart);
+        String itemReceipt = getEachItemReceipt(itemSubToltalNum);
 
         return generateFinalReceipt(itemReceipt);
     }
