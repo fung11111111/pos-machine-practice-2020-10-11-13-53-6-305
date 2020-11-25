@@ -13,14 +13,14 @@ public class PosMachine {
     public String printReceipt(List<String> barcodes) {
 
         List<ItemInfo> itemsInCart = createItemByBarcodes(barcodes);
-        Map<String, Integer> itemSubToltalNum = getSubTotalNumOfItem(itemsInCart);
-        String itemReceipt = getEachItemReceipt(itemSubToltalNum);
+        Map<String, Integer> itemSubTotalNum = getSubTotalNumOfItem(itemsInCart);
+        String itemReceipt = getEachItemReceipt(itemSubTotalNum);
 
         return generateFinalReceipt(itemReceipt);
     }
 
 
-//    P : 1 mins
+    //    P : 1 mins
 //    D : 2 mins
 //    C : check whether the count of each item is correct
 //    A : fix the bug and test again
@@ -37,6 +37,7 @@ public class PosMachine {
 
         return itemSubToltalNum;
     }
+
     //P:1 mins
 //    D : 2 mins
 //    C : check whether each receipt string is correct
@@ -56,6 +57,7 @@ public class PosMachine {
         }
         return itemReceipt;
     }
+
     //P:1 mins
 //    D : 2 mins
 //    C : check whether final receipt is correct and get correct total amount
@@ -64,7 +66,7 @@ public class PosMachine {
         String header = "***<store earning no money>Receipt***\n";
         String divider = "----------------------\n";
         String footer = "**********************";
-        String totalCharge = "Total: " + getTotal() + " (yuan)\n";
+        String totalCharge = "Total: " + getTotalCharge() + " (yuan)\n";
         return header + itemReceipt + divider + totalCharge + footer;
     }
 
@@ -85,6 +87,7 @@ public class PosMachine {
         }
         return itemsInCart;
     }
+
     //P:1 mins
 //    D : 1 mins
 //    C : check whether the total can be added
@@ -92,13 +95,15 @@ public class PosMachine {
     private void addTotalCharge(int subTotal) {
         total += subTotal;
     }
+
     //P:1 mins
 //    D : 1 mins
 //    C : check whether the total can be got
 //    A : fix the bug and test again if needed
-    private int getTotal() {
+    private int getTotalCharge() {
         return total;
     }
+
     //P:1 mins
 //    D : 1 mins
 //    C : check whether the load all item in db
