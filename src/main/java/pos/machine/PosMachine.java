@@ -24,6 +24,8 @@ public class PosMachine {
 //    D : 2 mins
 //    C : check whether the count of each item is correct
 //    A : fix the bug and test again
+
+    // todo: rename var and improve total, ifabsent
     private Map<String, Integer> getSubTotalNumOfItem(List<ItemInfo> itemsInCart) {
         Map<String, Integer> itemSubToltalNum = new HashMap<>();
 
@@ -42,9 +44,11 @@ public class PosMachine {
 //    D : 2 mins
 //    C : check whether each receipt string is correct
 //    A : fix the bug and test again if needed
+
+    //todo add context map getTotal
     private String getEachItemReceipt(Map<String, Integer> itemSubToltalNum) {
         int subTotal = 0;
-        List<ItemInfo> intemInfos = ItemDataLoader.loadAllItemInfos();
+        List<ItemInfo> intemInfos = getItemList();
         String itemReceipt = "";
         for (ItemInfo item : intemInfos) {
             if (itemSubToltalNum.get(item.getName()) != null) {
@@ -62,6 +66,7 @@ public class PosMachine {
 //    D : 2 mins
 //    C : check whether final receipt is correct and get correct total amount
 //    A : fix the bug and test again if needed
+    //todo add context map getTotal
     private String generateFinalReceipt(String itemReceipt) {
         String header = "***<store earning no money>Receipt***\n";
         String divider = "----------------------\n";
@@ -75,7 +80,7 @@ public class PosMachine {
 //    C : check whether the input itme can get the related infomation
 //    A : fix the bug and test again if needed
     private List<ItemInfo> createItemByBarcodes(List<String> barcodes) {
-        List<ItemInfo> itemList = ItemDataLoader.loadAllItemInfos();
+        List<ItemInfo> itemList = getItemList();
         ArrayList<ItemInfo> itemsInCart = new ArrayList<>();
         for (String barcode : barcodes) {
             for (ItemInfo item : itemList) {
@@ -108,8 +113,9 @@ public class PosMachine {
 //    D : 1 mins
 //    C : check whether the load all item in db
 //    A : fix the bug and test again if needed
-    private List<ItemInfo> getItemList(List<String> barcodes) {
+    private List<ItemInfo> getItemList() {
         return ItemDataLoader.loadAllItemInfos();
     }
+
 
 }
